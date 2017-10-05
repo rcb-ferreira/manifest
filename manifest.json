@@ -2,12 +2,12 @@
   "name": "Play Royal Vegas",
   "short_name": "prv",
   "lang": "en-US",
-  "start_url": "/index.html",
-  "display": "fullscreen",
+  "start_url": "/manifest/index.html",
+  "display": "standalone",
   "theme_color": "#000",
   "icons": [
     {
-      "src": "/assets/images/logos/logos.png",
+      "src": "/manifest/assets/images/logos/logos.png",
       "sizes": "192x192",
       "type": "image/png"
     }
