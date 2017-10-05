@@ -1,18 +1,21 @@
 {
-  "manifest_version": "1.0.0",
-  "name": "Play Royal Vegas",
-  "short_name": "prv",
-  "lang": "en-US",
-  "scope": "/manifest/",
-  "start_url": "/manifest/index.html",
-  "display": "standalone",
-  "theme_color": "#000",
+  "name": "Newssite",
+  "short_name": "Newssite example",
+  "description": "Newssite example for BärnerJs Talk",
   "icons": [
     {
-      "src": "/manifest/assets/images/logos/Logo.png",
-      "sizes": "192x192",
-      "type": "image/png"
+      "src": "img/jslogo48.png",
+      "type": "image/png",
+      "sizes": "48x48"
+    },
+    {
+      "src": "img/jslogo144.png",
+      "type": "image/png",
+      "sizes": "144x144"
     }
   ],
-  "prefer_related_applications": true
+  "start_url": "/",
+  "background_color": "#f0db4f",
+  "display": "standalone",
+  "theme_color": "#f0db4f"
 }

@@ -1,45 +1,45 @@
 <!DOCTYPE html>
-  <!--[if lte IE 6]><html class="preIE7 preIE8 preIE9"><![endif]-->
-  <!--[if IE 7]><html class="preIE8 preIE9"><![endif]-->
-  <!--[if IE 8]><html class="preIE9"><![endif]-->
-  <!--[if gte IE 9]><!--><html><!--<![endif]-->
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+<html lang="en">
 
-    <title>Manifest App</title>
-
-    <link rel="shortcut icon" href="/manifest/assets/images/icons/36.ico">
-
+<head>
+    <title>Newssite</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="lib/bootstrap.min.css">
+    <link rel="stylesheet" href="custom.css">
     <link rel="manifest" href="manifest.json">
+    <script src="lib/jquery.min.js"></script>
+    <script src="feedReader.js"></script>
+</head>
 
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="application-name" content="prv">
-    <meta name="apple-mobile-web-app-title" content="prv">
-    <meta name="theme-color" content="#000">
-    <meta name="msapplication-navbutton-color" content="#000">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="msapplication-starturl" content="/manifest/index.html">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<body>
+    <div>
+        <div class="jumbotron" style="margin:20px;padding:20px">
+            <h2>Newssite</h2>
+            <span id="loadingIndicator"></span><input type="button" class="btn pull-right" value="reload" onclick="addFeedsToSite('ulContainer');"
+            />
+            <ul id="ulContainer" class="list-group" style="padding-top:30px">
 
-    <link rel="icon" type="image/png" sizes="192x192" href="/manifest/assets/images/logos/Logo.png">
-    <link rel="apple-touch-icon" type="image/png" sizes="192x192" href="/manifest/assets/images/logos/Logo.png">
-  </head>
-  <body>
-	<h1>Play royal vagas</h1>
+            </ul>
+        </div>
+</body>
+<script type="text/javascript">
+    $(document).ready(function () {
+        addFeedsToSite("ulContainer");
 
-  <img src="/manifest/assets/images/logos/Logo.png" alt="">
+        //check if service worker is part of navigator
+        // and therefore implmented by the current browser
+        if ('serviceWorker' in navigator) {
+            //the service worker js file must always be on top level of the app
+            //to use service worker the site must run under https (expect localhost)
+            navigator.serviceWorker.register('sw.js').then(function (reg) {
+                console.log('Registration succeeded', reg);
+            }).catch(function (error) {
+                console.log('Registration failed with ', error);
+            });
+        };
+    });
 
-  <script type="text/javascript">
-   function autorun()
-   {
+</script>
 
-   }
-   if (document.addEventListener) document.addEventListener("DOMContentLoaded", autorun, false);
-   else if (document.attachEvent) document.attachEvent("onreadystatechange", autorun);
-   else window.onload = autorun;
-  </script>
-  </body>
 </html>
