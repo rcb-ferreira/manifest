@@ -9,7 +9,7 @@
   "theme_color": "#000",
   "icons": [
     {
-      "src": "manifest/assets/images/logos/logo.png",
+      "src": "/assets/images/logos/logo.png",
       "sizes": "192x192",
       "type": "image/png"
     }
