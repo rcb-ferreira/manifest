@@ -1,60 +1,55 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>Add to Homescreen</title>
-  <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>Newssite</title>
+    <meta charset="utf-8">
 
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-  <meta name="apple-mobile-web-app-title" content="Test name 2">
+    <link rel="apple-touch-icon" sizes="180x180" href="/manifest/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/manifest/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/manifest/favicon-16x16.png">
+    <link rel="mask-icon" href="/manifest/safari-pinned-tab.svg" color="#000000">
+    <link rel="manifest" href="/manifest/manifest.json">
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/manifest/apple-touch-icon.png">
-  <link rel="apple-touch-icon" sizes="76x76" href="http://placekitten.com/76/76">
-  <link rel="apple-touch-icon" sizes="120x120" href="http://placekitten.com/120/120">
-  <link rel="apple-touch-icon" sizes="152x152" href="http://placekitten.com/152/152">
-
-  <meta name="msapplication-starturl" content="latest?launchedTest" />
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="PVR">
+    <meta name="apple-mobile-web-app-title" content="Play Royal Vegas">
+    <meta name="theme-color" content="#000000">
+    <meta name="msapplication-navbutton-color" content="#000000">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="msapplication-starturl" content="/manifest/">
+    <meta name="viewport"
+        content="width=device-width,minimum-scale=1.0,maximum-scale=1.0" />
 </head>
+
 <body>
-  <script>
-    (function() {
-      var startUrlEl = document.querySelector("meta[name=msapplication-starturl]");
-      if(!!startUrlEl === true && navigator.standalone === true) {
-        var lastUrl = localStorage["navigate"];
-        history.pushState({launched: (!!lastUrl == false && history.length === 1)}, undefined, lastUrl || startUrlEl.content);
-        localStorage.removeItem("navigate");
-
-        // Intercept all anchor clicks and keep fullscreen if in origin
-        document.addEventListener("click", function(e) {
-          var target = e.target;
-          if(target.tagName === 'A') {
-
-            var href = target.getAttribute("href");
-            var linkedUrl = new URL(target.href);
-            if(linkedUrl.origin === location.origin) {
-              e.preventDefault();
-              location.href = href;
-            }
-            else {
-              // When we are navigating away store the state so we can resume.
-              localStorage["navigate"] = location.href;
-            }
-          }
-        });
-      }
-    })();
-
-
-  </script>
-
-  <h1>This is a test</h1>
-
-  <a href="#1">test 1</a>
-  <a href="?1">test 2</a>
-  <a href="3">test 3</a>
-  <a href="#">test 4</a>
-  <a href="https://paul.kinlan.me/">External Test 5</a>
-
+  <div class="container">
+    <h1>Welcome</h1>
+    <div class="jumbotron">
+      <h2>Play royal vegas</h2>
+      <p>Start playing</p>
+    </div>
+  </div>
 </body>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        //check if service worker is part of navigator
+        // and therefore implmented by the current browser
+        if ('serviceWorker' in navigator) {
+            //the service worker js file must always be on top level of the app
+            //to use service worker the site must run under https (expect localhost)
+            navigator.serviceWorker.register('sw.js').then(function (reg) {
+                console.log('Registration succeeded', reg);
+            }).catch(function (error) {
+                console.log('Registration failed with ', error);
+            });
+        };
+    });
+</script>
 </html>
